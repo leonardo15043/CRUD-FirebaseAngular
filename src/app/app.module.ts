@@ -9,6 +9,7 @@ import { APP_ROUTING } from './app.routes';
 
 import { HeroesService } from './services/heroes.service';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     APP_ROUTING
   ],
   providers: [
