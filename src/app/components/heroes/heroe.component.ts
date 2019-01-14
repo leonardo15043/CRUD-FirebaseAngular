@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Heroe } from '../../interfaces/heroe.interface';
+import { NgForm } from '@angular/forms';
 import { Router , ActivatedRoute } from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -59,6 +60,16 @@ export class HeroeComponent implements OnInit {
         error=> console.error(error));
 
     }
+  }
+
+  agregarNuevo( forma:NgForm ){
+
+    this.router.navigate(['/heroe','nuevo']);
+
+    forma.reset({
+      casa:"Marvel"
+    });
+
   }
 
 }
