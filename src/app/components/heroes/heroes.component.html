@@ -10,7 +10,7 @@
   <div class="col-md-12">
     <div class="table-responsive">
 
-      <table class="table">
+    <table class="table">
       <thead class="thead-inverse">
         <tr>
           <th scope="col">#</th>
@@ -24,6 +24,10 @@
               <td>{{ i + 1}}</td>
               <td>{{ heroes[k].nombre }}</td>
               <td>{{ heroes[k].casa }}</td>
+              <td>
+                <button [routerLink]="['/heroe',k]" type="button" class="btn btn-outline-success">Editar</button>
+                <button (click)="eliminarHeroe(k)" type="button" class="btn btn-outline-danger">Eliminar</button>
+              </td>
             </tr>
       </tbody>
     </table>
