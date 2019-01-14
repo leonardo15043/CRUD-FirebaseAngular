@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Heroe } from '../../interfaces/heroe.interface';
+import { Router , ActivatedRoute } from '@angular/router';
 import { HeroesService } from '../../services/heroes.service';
 
 @Component({
@@ -15,20 +16,43 @@ export class HeroeComponent implements OnInit {
     casa:"Marvel"
   }
 
+  id:string;
+
   constructor(
-    private _heroesService:HeroesService
-  ) { }
+    private _heroesService:HeroesService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
+  ) {
+
+    this.activatedRoute.params
+    .subscribe( parametros=>{
+      //console.log(parametros);
+      this.id = parametros["id"];
+    })
+  }
 
   ngOnInit() {
   }
 
   guardar(){
-    console.log(this.heroe);
 
-    this._heroesService.nuevoHeroe(this.heroe)
-      .subscribe( data =>{
-        return data;
-      })
+    if(this.id == "nuevo"){
+
+      this._heroesService.nuevoHeroe(this.heroe)
+        .subscribe( data =>{
+           this.router.navigate(['/heroe',data.name])
+        },
+        error=> console.error(error));
+
+    }else{
+
+      this._heroesService.actualizarHeroe(this.heroe, this.id)
+        .subscribe( data =>{
+          console.log(data);
+        },
+        error=> console.error(error));
+
+    }
   }
 
 }
